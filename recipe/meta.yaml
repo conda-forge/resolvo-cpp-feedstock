@@ -10,9 +10,9 @@ source:
   sha256: f34f56665894af3c4d3996db5dfb0ac58167e4c66ccdf844d0f9a30c38f3a658
 
 build:
-  number: 0
+  number: 1
   run_exports:
-    - {{ pin_subpackage('resolvo-cpp', max_pin='x.x') }} 
+    - {{ pin_subpackage('resolvo-cpp', max_pin='x.x') }}
 
 requirements:
   build:
