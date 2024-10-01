@@ -202,6 +202,3 @@ Feedstock Maintainers
 * [@baszalmstra](https://github.com/baszalmstra/)
 * [@jjerphan](https://github.com/jjerphan/)
 
-
-<!-- dummy commit to enable rerendering -->
-
