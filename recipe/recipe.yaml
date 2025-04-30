@@ -23,6 +23,7 @@ requirements:
     - cmake
     - ninja
     - cargo-bundle-licenses
+    - git # Needed for CMake ExternalDeclarations
   run_exports:
     - ${{ pin_subpackage('resolvo-cpp', upper_bound='x.x') }}
 
