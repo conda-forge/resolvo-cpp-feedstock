@@ -1,0 +1,73 @@
+schema_version: 1
+
+context:
+  name: resolvo-cpp
+  version: 0.2.0
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/mamba-org/resolvo/archive/refs/tags/resolvo_cpp-v${{ version }}.zip
+  sha256: d3e722d60898ebfeaae990cc9e9780fbfa4e07de390b51ae5c1c73746eae450d
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('rust') }}
+    - cmake
+    - ninja
+    - cargo-bundle-licenses
+  run_exports:
+    - ${{ pin_subpackage('resolvo-cpp', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: unix
+        then: test -d ${PREFIX}/include/resolvo
+      - if: unix
+        then: test -f ${PREFIX}/include/resolvo/resolvo.h
+      - if: unix
+        then: test -f ${PREFIX}/include/resolvo/resolvo_internal.h
+      - if: unix
+        then: test -e ${PREFIX}/lib/libresolvo_cpp${SHLIB_EXT}
+      - if: unix
+        then: test -e ${PREFIX}/lib/cmake/Resolvo/ResolvoTargets.cmake
+      - if: unix
+        then: test -e ${PREFIX}/lib/cmake/Resolvo/ResolvoConfigVersion.cmake
+      - if: unix
+        then: test -e ${PREFIX}/lib/cmake/Resolvo/ResolvoConfig.cmake
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\include\resolvo\resolvo.h (exit 1)
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\include\resolvo\resolvo_internal.h (exit 1)
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\lib\resolvo_cpp.dll (exit 1)
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\lib\resolvo_cpp.dll.lib (exit 1)
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\lib\cmake\Resolvo\ResolvoTargets.cmake (exit 1)
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\lib\cmake\Resolvo\ResolvoConfigVersion.cmake (exit 1)
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\lib\cmake\Resolvo\ResolvoConfig.cmake (exit 1)
+
+about:
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: C++ bindings for resolvo, a universal package resolver.
+  homepage: https://github.com/mamba-org/resolvo
+  repository: https://github.com/mamba-org/resolvo
+
+extra:
+  feedstock-name: resolvo-cpp
+  recipe-maintainers:
+    - baszalmstra
+    - jjerphan
