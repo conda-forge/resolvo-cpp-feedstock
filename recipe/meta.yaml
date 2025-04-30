@@ -1,5 +1,5 @@
 {% set name = "resolvo-cpp" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.1" %}
 
 package:
   name: {{ name }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/mamba-org/resolvo/archive/refs/tags/resolvo_cpp-v{{ version }}.zip
-  sha256: f34f56665894af3c4d3996db5dfb0ac58167e4c66ccdf844d0f9a30c38f3a658
+  sha256: 658e8d2d6b4473aa242a44c35d8eb633722017a1a7426cea27c3bd245f6fa36e
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage('resolvo-cpp', max_pin='x.x') }}
 
