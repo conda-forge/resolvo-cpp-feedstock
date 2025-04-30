@@ -31,8 +31,8 @@ tests:
       lib:
         - resolvo_cpp
       include: 
-        - resolvo\resolvo.h
-        - resolvo\resolvo_internal.h
+        - resolvo/resolvo.h
+        - resolvo/resolvo_internal.h
       files:
         - if: win
           then:
