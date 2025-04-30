@@ -27,35 +27,22 @@ requirements:
     - ${{ pin_subpackage('resolvo-cpp', upper_bound='x.x') }}
 
 tests:
-  - script:
-      - if: unix
-        then: test -d ${PREFIX}/include/resolvo
-      - if: unix
-        then: test -f ${PREFIX}/include/resolvo/resolvo.h
-      - if: unix
-        then: test -f ${PREFIX}/include/resolvo/resolvo_internal.h
-      - if: unix
-        then: test -e ${PREFIX}/lib/libresolvo_cpp${SHLIB_EXT}
-      - if: unix
-        then: test -e ${PREFIX}/lib/cmake/Resolvo/ResolvoTargets.cmake
-      - if: unix
-        then: test -e ${PREFIX}/lib/cmake/Resolvo/ResolvoConfigVersion.cmake
-      - if: unix
-        then: test -e ${PREFIX}/lib/cmake/Resolvo/ResolvoConfig.cmake
-      - if: win
-        then: if not exist %LIBRARY_PREFIX%\include\resolvo\resolvo.h (exit 1)
-      - if: win
-        then: if not exist %LIBRARY_PREFIX%\include\resolvo\resolvo_internal.h (exit 1)
-      - if: win
-        then: if not exist %LIBRARY_PREFIX%\lib\resolvo_cpp.dll (exit 1)
-      - if: win
-        then: if not exist %LIBRARY_PREFIX%\lib\resolvo_cpp.dll.lib (exit 1)
-      - if: win
-        then: if not exist %LIBRARY_PREFIX%\lib\cmake\Resolvo\ResolvoTargets.cmake (exit 1)
-      - if: win
-        then: if not exist %LIBRARY_PREFIX%\lib\cmake\Resolvo\ResolvoConfigVersion.cmake (exit 1)
-      - if: win
-        then: if not exist %LIBRARY_PREFIX%\lib\cmake\Resolvo\ResolvoConfig.cmake (exit 1)
+  - package_contents:
+      lib:
+        - resolvo_cpp
+      include: 
+        - resolvo\resolvo.h
+        - resolvo\resolvo_internal.h
+      files:
+        - if: win
+          then:
+            - Library/lib/cmake/Resolvo/ResolvoTargets.cmake
+            - Library/lib/cmake/Resolvo/ResolvoConfigVersion.cmake
+            - Library/lib/cmake/Resolvo/ResolvoConfig.cmake
+          else:
+            - lib/cmake/Resolvo/ResolvoTargets.cmake
+            - lib/cmake/Resolvo/ResolvoConfigVersion.cmake
+            - lib/cmake/Resolvo/ResolvoConfig.cmake
 
 about:
   license: BSD-3-Clause
