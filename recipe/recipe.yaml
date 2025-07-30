@@ -2,15 +2,15 @@ schema_version: 1
 
 context:
   name: resolvo-cpp
-  version: 0.2.0
+  version: 0.3.0
 
 package:
   name: ${{ name }}
   version: ${{ version }}
 
 source:
-  url: https://github.com/mamba-org/resolvo/archive/refs/tags/resolvo_cpp-v${{ version }}.zip
-  sha256: d3e722d60898ebfeaae990cc9e9780fbfa4e07de390b51ae5c1c73746eae450d
+  url: https://github.com/prefix-dev/resolvo/archive/refs/tags/resolvo_cpp-v${{ version }}.zip
+  sha256: bda239ff439afc3fb3d6d750089a3b1c27ba620524c28a1de19bc9051b2d6656
 
 build:
   number: 1
