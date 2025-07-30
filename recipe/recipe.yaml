@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/prefix-dev/resolvo/archive/refs/tags/resolvo_cpp-v${{ version }}.zip
-  sha256: bda239ff439afc3fb3d6d750089a3b1c27ba620524c28a1de19bc9051b2d6656
+  sha256: 9df7328e23958260ff37d5b2de75a88c42acea63afe823ea3f52cbbd3838f247
 
 build:
   number: 1
