@@ -1,0 +1,61 @@
+schema_version: 1
+
+context:
+  name: resolvo-cpp
+  version: 0.3.0
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/prefix-dev/resolvo/archive/refs/tags/resolvo_cpp-v${{ version }}.zip
+  sha256: 9df7328e23958260ff37d5b2de75a88c42acea63afe823ea3f52cbbd3838f247
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('rust') }}
+    - cmake
+    - ninja
+    - cargo-bundle-licenses
+    - git # Needed for CMake ExternalDeclarations
+  run_exports:
+    - ${{ pin_subpackage('resolvo-cpp', upper_bound='x.x') }}
+
+tests:
+  - package_contents:
+      lib:
+        - resolvo_cpp
+      include: 
+        - resolvo/resolvo.h
+        - resolvo/resolvo_internal.h
+      files:
+        - if: win
+          then:
+            - Library/lib/cmake/Resolvo/ResolvoTargets.cmake
+            - Library/lib/cmake/Resolvo/ResolvoConfigVersion.cmake
+            - Library/lib/cmake/Resolvo/ResolvoConfig.cmake
+          else:
+            - lib/cmake/Resolvo/ResolvoTargets.cmake
+            - lib/cmake/Resolvo/ResolvoConfigVersion.cmake
+            - lib/cmake/Resolvo/ResolvoConfig.cmake
+
+about:
+  license: BSD-3-Clause
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  summary: C++ bindings for resolvo, a universal package resolver.
+  homepage: https://github.com/mamba-org/resolvo
+  repository: https://github.com/mamba-org/resolvo
+
+extra:
+  feedstock-name: resolvo-cpp
+  recipe-maintainers:
+    - baszalmstra
+    - jjerphan
